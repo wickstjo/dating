@@ -1,0 +1,9 @@
+RewriteEngine On
+RewriteBase /
+
+# PEOPLE
+RewriteRule (?i)^people/?$ people.php [L]
+RewriteRule (?i)^people/([^/.]+)/?$ people.php?username=$1 [L]
+
+# LOGOUT
+RewriteRule (?i)^logout$ index.php?logout=true [L]

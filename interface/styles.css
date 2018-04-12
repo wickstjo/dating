@@ -1,0 +1,299 @@
+@font-face {
+	font-family: 'Open Sans';
+	src: url('fonts/main.woff');
+}
+
+body {
+	font: 13px 'Open Sans', verdana;
+	color: #505050;
+	margin: 0px;
+	padding: 0px;
+}
+
+a:link, a:visited, a:hover {
+	color: #21759B;
+	text-decoration: none;
+	-o-transition: .2s;
+	-ms-transition: .2s;
+	-moz-transition: .2s;
+	-webkit-transition: .2s;
+	transition: .2s;
+}
+
+a:hover {
+   color: #D54E21;
+}
+
+table {
+	width: 100%;
+	border-spacing: 0px;
+	font: inherit;
+	color: inherit;
+	padding: 0px;
+	margin: 0px;
+}
+
+td {
+	vertical-align: top;
+	margin: 0px;
+	padding: 0px;
+}
+
+form {
+	margin: 0px;
+}
+
+ul {
+	list-style: none;
+	margin: 0px;
+	padding: 0px;
+}
+
+#menu li, #submenu li {
+	display: inline-block;
+	border-right: 2px dotted #3A3E42;
+	margin: 0px;
+	padding: 6px;
+}
+
+#menu li:last-child {
+	border: 0px solid white;
+}
+
+#menu li a:link, li a:visited {
+	padding: 7px 9px;
+	color: #C8C9CA;
+}
+
+#menu li a:hover {
+	background: #34383C;
+	border-radius: 4px;
+	color: white;
+}
+
+#active {
+	text-decoration: underline;
+}
+
+#menu {
+	background: #22262A;
+	padding: 8px 0px 8px 0px;
+}
+
+#menu-tbl td:last-child {
+   text-align: right;
+}
+
+#main {
+	padding: 15px;
+}
+
+#people-tbl, #person-tbl {
+	border: 1px solid #E7EAED;
+   border-right: 0px solid black;
+   border-bottom: 0px solid black;
+   margin-bottom: 15px;
+}
+
+#person-tbl {
+   border-right: 1px solid #E7EAED;
+}
+
+#people-tbl td, #person-tbl td {
+	padding: 6px;
+   border-right: 1px solid #E7EAED;
+   border-bottom: 1px solid #E7EAED;
+}
+
+#person-tbl td {
+   border-right: 0px solid #E7EAED;
+}
+
+#person-tbl td:last-child {
+   text-align: right;
+}
+
+#people-tbl tr:nth-child(odd), #person-tbl tr:nth-child(odd) {
+	background: #F6F6F6;
+}
+
+#people-tbl tr:first-child, #person-tbl tr:first-child {
+	background: #F0F7FF;
+}
+
+#people-tbl tr:first-child td, #person-tbl tr:first-child td {
+   text-decoration: underline;
+}
+
+#person-tbl tr:first-child td:last-child {
+   text-decoration: none;
+}
+
+#people-tbl td {
+   width: 25%;
+}
+
+#success, #error, .row {
+	background: url('img/success.png');
+	padding: 8px;
+	margin-bottom: 10px;
+	border-radius: 4px;
+	border: 1px solid #CECECE;
+}
+
+#error, .row {
+   background: url('img/error.png');
+}
+
+.row {
+   margin-bottom: 10px;
+}
+
+.row:last-child {
+   margin-bottom: 15px;
+}
+
+#validate {
+   display: none;
+   color: white;
+}
+
+#title {
+	background: #F0F7FF;
+	border: 1px solid #E4E7EB;
+   padding: 6px;
+   text-decoration: underline;
+}
+
+#content {
+	background: #F6F6F6;
+	border: 1px solid #E4E7EB;
+	border-top: 0px solid black;
+   padding: 12px;
+   margin-bottom: 15px;
+}
+
+#tools {
+	display: none;
+	background: url('img/dark.png');
+	position: absolute;
+	height: 100%;
+	width: 100%;
+}
+
+#tools td {
+	vertical-align: middle;
+}
+
+#toolbox {
+	border: 3px solid #9C9C9C;
+	background: url('img/bg2.png');
+	width: 300px;
+	margin-left: auto;
+	margin-right: auto;
+
+	padding: 15px;
+	border-radius: 4px;
+}
+
+input, .attending, textarea {
+	font: inherit;
+	color: inherit;
+	background: url('../interface/img/inner-bg.png');
+	margin-bottom: 10px;
+	padding: 6px;
+	border: 2px solid white;
+	width: 100%;
+	border-radius: 4px;
+	outline: none;
+}
+
+textarea {
+   resize: vertical;
+}
+
+.attending {
+   width: auto;
+   padding-left: 8px;
+}
+
+input[type="checkbox"] {
+   width: auto;
+   margin: 0px;
+   padding: 0px;
+}
+
+label {
+   cursor: pointer;
+}
+
+#toolbox td:last-child {
+   width: 50px;
+}
+
+input[type="submit"] {
+	background: url('../interface/img/success.png');
+	border: 2px solid #8BA69C;
+	color: white;
+	cursor: pointer;
+	text-align: center;
+	margin-bottom: 0px;
+}
+
+input[type="submit"]:disabled {
+   background: #CECECE;
+	border: 2px solid white;
+}
+
+#new {
+   text-align: right;
+   margin-bottom: 15px;
+}
+
+#new li {
+	background: url('img/caution.png');
+	border: 1px solid #CECECE;
+	display: inline-block;
+	cursor: pointer;
+   border-radius: 4px;
+   margin-left: 10px;
+}
+
+#new li:hover {
+   text-decoration: underline;
+}
+
+#new a:link, #new a:visited, #new a:hover {
+	color: #21759B;
+	padding: 5px 9px;
+	display: block;
+}
+
+#comments {
+   margin-bottom: 15px;
+}
+
+#comments-header {
+   background: #EFF6FF;
+   border: 1px solid #E4E7EB;
+   padding: 7px;
+}
+
+.comments-row {
+   background: white;
+   border: 1px solid #E4E7EB;
+   border-top: 0px solid white;
+   padding: 7px;
+}
+
+.comments-row:nth-child(odd) {
+   background: #F5F5F5;
+}
+
+.comments-row a:hover {
+   text-decoration: underline;
+}
+
+.comments-row td:nth-child(2) {
+   text-align: right;
+}
