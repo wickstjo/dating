@@ -4,7 +4,9 @@
 
    // EVERYONE
    if (!isset($_GET['username'])) {
+
       $people = new people();
+      $people->sortMenu();
       $people->show();
 
    // SINGLE PEOPLE
@@ -12,6 +14,7 @@
 
       // IF USER EXISTS
       if (misc::userExists($_GET['username'])) {
+
          $person = new person($_GET['username']);
          $person->show();
 

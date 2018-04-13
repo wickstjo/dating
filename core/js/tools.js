@@ -16,7 +16,24 @@ $('a').on('click', function() {
             $.getScript("http://dating.proj/core/js/input.js");
          }
       });
-	}
+   }
+   
+   if (id == 'sort') {
+
+      // PICK UP ID
+      var col = $(event.target).attr("id");
+
+      $.ajax({
+         type: 'POST',
+         url: '/core/js/sort.php',
+         data: {col: col},
+         success: function(data) {
+            console.log('sorting based on ' + col);
+            $('#sorting').html(data);
+         }
+      });
+
+   }
 
 });
 

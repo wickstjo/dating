@@ -57,5 +57,9 @@
       public function fetch($var) {
          return $this->$var;
       }
+
+      public function set($var, $value) {
+         $this->$var = $value;
+      }
    }
 ?>

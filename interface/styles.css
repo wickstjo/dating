@@ -220,18 +220,12 @@ input, .attending, textarea {
 	outline: none;
 }
 
-input[type="checkbox"] {
-   width: auto;
-   margin: 0px;
-   padding: 0px;
-}
-
-label {
-   cursor: pointer;
-}
-
 #toolbox td:last-child {
    width: 50px;
+}
+
+#success table td:last-child {
+   text-align: right;
 }
 
 input[type="submit"] {

@@ -89,8 +89,8 @@ $("#toolbox input").on('keydown keyup change', function() {
       }
 
       // CHECK NAME LENGTH
-      if ((name.length != 0) && (name.length > 100)) {
-         errors.push('Name cannot exceed 100 characters.');
+      if ((name.length != 0) && (name.length < 4 || name.length > 100)) {
+         errors.push('Name must be between 4 and 100 characters.');
       }
 
       // CHECK EMAIL VALIDITY
@@ -101,7 +101,7 @@ $("#toolbox input").on('keydown keyup change', function() {
       }
 
       // CHECK ZIP CODE VALIDITY
-      if (zip.length != 0 && zip.length != 6) {
+      if (zip.length != 0 && zip.length < 5) {
          errors.push('Invalid zip code format!');
       }
 
@@ -177,9 +177,21 @@ $("#toolbox input").on('keydown keyup change', function() {
          errors.push('That is already your name!');
       }
 
+      // CHECK NAME LENGTH
+      if ((name.length != 0) && (name.length < 4 || name.length > 100)) {
+         errors.push('Name must be between 4 and 100 characters.');
+      }
+
       // CHECK EMAIL WITH PH
       if (email.toLowerCase() == emailPH.toLowerCase()) {
          errors.push('That is already your email!');
+      }
+      
+      // CHECK EMAIL VALIDITY
+      if ((email.length != 0 && email.length < 8) || (email.length > 50)) {
+
+         // IMPLEMENT PROPER EMAIL CHECK
+         errors.push('Invalid email format!');
       }
 
       // CHECK ZIP WITH PH
@@ -187,9 +199,19 @@ $("#toolbox input").on('keydown keyup change', function() {
          errors.push('That is already your zip code!');
       }
 
+      // CHECK ZIP CODE VALIDITY
+      if (zip.length != 0 && zip.length < 5) {
+         errors.push('Invalid zip code format!');
+      }
+
       // CHECK INCOME WITH PH
       if (income == incomePH) {
          errors.push('That is already your yearly income!');
+      }
+
+      // CHECK INCOME LENGTH
+      if (income.length > 100) {
+         errors.push('Income cannot exceed 100 characters!');
       }
 
       // CHECK SEEKS WITH PH
@@ -200,6 +222,11 @@ $("#toolbox input").on('keydown keyup change', function() {
       // CHECK DESCRIPTION WITH PH
       if (descr == descrPH) {
          errors.push('That is already your description!');
+      }
+
+      // CHECK DESCRIPTION LENGTH
+      if ((descr.length != 0) && (descr.length < 10 || descr.length > 500)) {
+         errors.push('Description must be between 10 and 500 characters.');
       }
 
       // ON SUCCESS

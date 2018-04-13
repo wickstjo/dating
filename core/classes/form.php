@@ -46,6 +46,7 @@
                <input type="number" placeholder="' . $_SESSION['auth']->fetch('income') . '" autocomplete="off" class="settings" name="income">
                <input type="text" placeholder="' . $_SESSION['auth']->fetch('seeks') . '" autocomplete="off" class="settings" name="seeks">
                <input type="text" placeholder="' . $_SESSION['auth']->fetch('descr') . '" autocomplete="off" class="settings" name="descr">
+               <hr>
 					<input type="submit" value="Change Settings" name="settings" disabled>
 				</form>
 			';
