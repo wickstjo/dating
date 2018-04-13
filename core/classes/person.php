@@ -31,11 +31,11 @@
                </tr>
                <tr>
                   <td>Name:</td>
-                  <td>' . $this->name . '</td>
+                  <td>' . ucwords($this->name) . '</td>
                </tr>
                <tr>
                   <td>Email:</td>
-                  <td>' . $this->email . '</td>
+                  <td>' . ucfirst($this->email) . '</td>
                </tr>
                <tr>
                   <td>Zip:</td>
@@ -47,7 +47,7 @@
                </tr>
                <tr>
                   <td>Seeks:</td>
-                  <td>' . $this->seeks . '</td>
+                  <td>' . ucfirst($this->seeks) . '</td>
                </tr>
                </table>
                <div id="success">' . $this->descr . '</div>

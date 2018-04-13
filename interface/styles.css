@@ -49,6 +49,18 @@ ul {
 	padding: 0px;
 }
 
+hr {
+   padding: 0px;
+   margin: 5px 15px 15px 15px;
+   border: 0px solid black;
+   border-top: 1px dotted #8E8E8E;
+   border-bottom: 1px dotted #4F4F4F;
+}
+
+#vspace {
+   display: none;
+}
+
 #menu li, #submenu li {
 	display: inline-block;
 	border-right: 2px dotted #3A3E42;
@@ -206,15 +218,6 @@ input, .attending, textarea {
 	width: 100%;
 	border-radius: 4px;
 	outline: none;
-}
-
-textarea {
-   resize: vertical;
-}
-
-.attending {
-   width: auto;
-   padding-left: 8px;
 }
 
 input[type="checkbox"] {

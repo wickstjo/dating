@@ -15,22 +15,25 @@
    // REGISTER
    } else if (isset($_POST['register'])) {
 
-      if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['repeat_password'])) {
+      if (isset($_POST['username']) && isset($_POST['password']) && isset($_POST['repeat_password']) && isset($_POST['name']) && isset($_POST['email']) && isset($_POST['zip']) && isset($_POST['income']) && isset($_POST['seeks']) && isset($_POST['descr'])) {
          $check = db::instance()->count('SELECT * FROM people WHERE username = ?', array($_POST['username']));
 
          if ($check == 0) {
             db::instance()->action(
-               'INSERT INTO users (username, email, password, status, date) VALUES (?, ?, ?, ?, ?)',
+               'INSERT INTO people (username, name, password, email, zip, income, descr, seeks) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
                array(
                   strtolower($_POST['username']),
-                  $_POST['email'],
-                  $_POST['password'],
-                  'Student',
-                  date('Y-m-d H:i:s')
+                  $_POST['name'],
+                  hash('sha256', $_POST['password']),
+                  strtolower($_POST['email']),
+                  $_POST['zip'],
+                  $_POST['income'],
+                  $_POST['descr'],
+                  strtolower($_POST['seeks'])
                )
             );
 
-            $_SESSION['auth'] = new user($_POST['username']);
+            $_SESSION['auth'] = new person($_POST['username']);
             misc::redirect('profile');
          }
       }

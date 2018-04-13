@@ -23,7 +23,7 @@
                   <td><a href="http://' . getenv('HTTP_HOST') . '/people/' . $r['username'] . '">' . ucfirst($r['username']) . '</a></td>
                   <td>' . $r['zip'] . '</td>
                   <td>' . misc::income($r['income']) . '</td>
-                  <td>' . $r['seeks'] . '</td>
+                  <td>' . ucfirst($r['seeks']) . '</td>
                </tr>
             ';
          }
