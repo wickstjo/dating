@@ -154,6 +154,7 @@ $("#toolbox input").on('keydown keyup change', function() {
 
    // SETTINGS
    if (source == 'settings') {
+
       var name = $("[name=name]").val();
       var namePH = $("[name=name]").attr('placeholder');
 
@@ -249,6 +250,67 @@ $("#toolbox input").on('keydown keyup change', function() {
          for (x = 0; x < errors.length; x++) { loopList.push('<div class="row">' + errors[x] + '</div>'); }
          $("#validate").html(loopList.join(""));
       }
+      
    }
+
+   // DATE REQUEST
+   if (source == 'date_request') {
+      var msg = $("[name=msg]").val();
+
+      // CHECK THAT BOTH FIELDS ARE FILLED
+      if (msg.length < 10 || msg.length > 40) {
+         errors.push('Message must be between 10 and 40 characters.');
+      }
+
+      // ON SUCCESS
+      if (errors.length == 0) {
+         $("[type=submit]").prop('disabled', false);
+         $('#validate, #vspace').css('display', 'none');
+
+      // ON ERROR
+      } else {
+         $("[type=submit]").prop('disabled', true);
+
+         for(x = 0; x < errors.length; x++) { loopList.push('<div class="row">' + errors[x] + '</div>'); }
+         $("#validate").html(loopList.join(""));
+
+         // HIDE IF ALL FIELDS ARE EMPTY, SHOW IF NOT
+         if (msg.length == 0) {
+            $('#validate, #vspace').css('display', 'none');
+         } else {
+            $('#validate, #vspace').css('display', 'block');
+         }
+      }
+   }
+
+      // DATE CANCEL
+      if (source == 'date_cancel') {
+         var confirm = $("[name=confirm]").val();
+   
+         // CHECK THAT BOTH FIELDS ARE FILLED
+         if (confirm != 'Confirm') {
+            errors.push('Type in "Confirm" to finalize.');
+         }
+   
+         // ON SUCCESS
+         if (errors.length == 0) {
+            $("[type=submit]").prop('disabled', false);
+            $('#validate, #vspace').css('display', 'none');
+   
+         // ON ERROR
+         } else {
+            $("[type=submit]").prop('disabled', true);
+   
+            for(x = 0; x < errors.length; x++) { loopList.push('<div class="row">' + errors[x] + '</div>'); }
+            $("#validate").html(loopList.join(""));
+   
+            // HIDE IF ALL FIELDS ARE EMPTY, SHOW IF NOT
+            if (confirm.length == 0) {
+               $('#validate, #vspace').css('display', 'none');
+            } else {
+               $('#validate, #vspace').css('display', 'block');
+            }
+         }
+      }
 
 });

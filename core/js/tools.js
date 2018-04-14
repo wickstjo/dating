@@ -1,24 +1,31 @@
 $('a').on('click', function() {
 
    // PICK UP AND SAVE NAME ATTR TO KNOW WHICH FORM TO VALIDATE
-	var id = $(event.target).attr("name");
+	var name = $(event.target).attr("name");
 
-   // CHECK IF SOURCE IS ALLOWED
-	if (id == 'login' || id == 'register' || id == 'settings') {
+   // WHITEBOX TRIGGER
+	if (name == 'login' || name == 'register' || name == 'settings' || name == 'date_request' || name == 'date_cancel') {
 
 		$.ajax({
          type: 'POST',
          url: '/core/js/tools.php',
-         data: {id: id},
+         data: {id: name},
          success: function(data) {
+
+            // PUSH IN CORRECT CONTENT FROM FORM CLASS
             $('#toolbox').html(data);
+
+            // SHOW TABLE
             $("#tools").css('display', 'table');
+
+            // NEEDED FOR VALIDATION TO WORK
             $.getScript("http://dating.proj/core/js/input.js");
          }
       });
    }
    
-   if (id == 'sort') {
+   // SORT PEOPLE TRIGGER
+   if (name == 'sort') {
 
       // PICK UP ID
       var col = $(event.target).attr("id");
@@ -28,8 +35,13 @@ $('a').on('click', function() {
          url: '/core/js/sort.php',
          data: {col: col},
          success: function(data) {
-            console.log('sorting based on ' + col);
+
+            // PUSH IN NEW TABLE
             $('#sorting').html(data);
+
+            // REMOVE OLD UNDERLINES AND ADD IT TO TARGET
+            $('#username, #zip, #income, #seeks').css('text-decoration', 'none');
+            $('#' + col).css('text-decoration', 'underline');
          }
       });
 
@@ -47,4 +59,9 @@ jQuery(document).on('keyup',function(evt) {
 			$("#toolbox").html();
 		}
     }
+});
+
+// UNDERLINE USERNAME LINK ON PEOPLE PAGE
+$(document).ready(function() {
+   $('#username').css('text-decoration', 'underline');
 });

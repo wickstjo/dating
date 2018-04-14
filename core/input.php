@@ -39,6 +39,7 @@
          }
       }
 
+   // CHANGE SETTINGS
    } else if (isset($_POST['settings'])) {
 
       // CHANGE NAME
@@ -78,6 +79,38 @@
       }
 
       misc::redirect('self');
+   
+   // DATE REQUEST
+   } else if (isset($_POST['date_request'])) {
+
+      if (!empty($_POST['msg'])) {
+      
+         db::instance()->action(
+            'INSERT INTO requests (fromUser, toUser, msg, status, date) VALUES (?, ?, ?, ?, ?)',
+            array(
+               strtolower($_SESSION['auth']->fetch('username')),
+               strtolower($_GET['username']),
+               $_POST['msg'],
+               'pending',
+               date('Y-m-d H:i:s')
+            )
+         );
+   
+         misc::redirect('self');
+      }
+      
+   } else if (isset($_POST['date_cancel'])) {
+      
+      if ($_POST['confirm'] == 'Confirm') {
+         db::instance()->action('DELETE FROM requests WHERE fromUser = ? AND toUser = ?',
+         array(
+            $_SESSION['auth']->fetch('username'),
+            strtolower($_GET['username'])
+         ));
+
+         misc::redirect('self');
+      }
+
    }
 
 ?>

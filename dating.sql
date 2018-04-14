@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 12, 2018 at 09:58 PM
+-- Generation Time: Apr 14, 2018 at 08:33 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 7.1.1
 
@@ -43,8 +43,31 @@ CREATE TABLE `people` (
 --
 
 INSERT INTO `people` (`id`, `username`, `name`, `password`, `email`, `zip`, `income`, `descr`, `seeks`) VALUES
-(1, 'wickstjo', 'John Wickström', 'd74ff0ee8da3b9806b18c877dbf29bbde50b5bd8e4dad7a3a725000feb82e8f1', 'wickstjo@arcada.fi', '02400', 42000, 'I am the boss.', 'Female'),
-(2, 'datboi', 'Urho Kekkonen', 'd74ff0ee8da3b9806b18c877dbf29bbde50b5bd8e4dad7a3a725000feb82e8f1', 'datboi@geocities.com', '00820', 95000, 'god tier memer.', 'Other');
+(1, 'wickstjo', 'john wickstrom', 'd74ff0ee8da3b9806b18c877dbf29bbde50b5bd8e4dad7a3a725000feb82e8f1', 'wickstjo@arcada.fi', '02400', 1000000, 'CASH MONEY', 'female'),
+(2, 'datboi', 'urho kekkonen', 'd74ff0ee8da3b9806b18c877dbf29bbde50b5bd8e4dad7a3a725000feb82e8f1', 'datboi@geocities.com', '00820', 95000, 'god tier memer.', 'other'),
+(4, 'eyylmao', 'eyy lmao', 'd74ff0ee8da3b9806b18c877dbf29bbde50b5bd8e4dad7a3a725000feb82e8f1', 'eyy@lmao.com', '565465', 500000, 'DOPE AT WOW', 'male');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `requests`
+--
+
+CREATE TABLE `requests` (
+  `id` int(11) NOT NULL,
+  `fromUser` varchar(50) COLLATE utf8_bin NOT NULL,
+  `toUser` varchar(50) COLLATE utf8_bin NOT NULL,
+  `msg` varchar(40) COLLATE utf8_bin NOT NULL,
+  `status` varchar(20) COLLATE utf8_bin NOT NULL,
+  `date` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Dumping data for table `requests`
+--
+
+INSERT INTO `requests` (`id`, `fromUser`, `toUser`, `msg`, `status`, `date`) VALUES
+(5, 'wickstjo', 'eyylmao', 'testngggggg', 'pending', '2018-04-14 18:08:04');
 
 --
 -- Indexes for dumped tables
@@ -57,6 +80,12 @@ ALTER TABLE `people`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `requests`
+--
+ALTER TABLE `requests`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -64,7 +93,12 @@ ALTER TABLE `people`
 -- AUTO_INCREMENT for table `people`
 --
 ALTER TABLE `people`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `requests`
+--
+ALTER TABLE `requests`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

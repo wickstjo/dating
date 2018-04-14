@@ -18,6 +18,11 @@
          $person = new person($_GET['username']);
          $person->show();
 
+         // SHOW BUTTON IF LOGGED IN & YOU AREN'T VIEWING YOUR OWN PAGE
+         if (isset($_SESSION['auth']) && $_SESSION['auth']->fetch('username') != strtolower($_GET['username'])) {
+            $person->button();
+         }
+
       // IF USER DOES NOT EXIST
       } else {
          misc::error('User was not found');

@@ -42,6 +42,7 @@
          ';
       }
 
+      // SORTING MENU -- JS CONFIG @ core/js/tools.js
       public function sortMenu() {
          echo '
             <div id="success">

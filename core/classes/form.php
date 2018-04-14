@@ -51,6 +51,30 @@
 				</form>
 			';
       }
+
+      public function date_request() {
+         echo '
+            <div id="validate"></div>
+            <hr id="vspace">
+            <form method="post">
+               <input type="text" placeholder="Your Message" autocomplete="off" class="date_request" name="msg">
+               <hr>
+					<input type="submit" value="Ask Out" name="date_request" disabled>
+				</form>
+			';
+      }
+
+      public function date_cancel() {
+         echo '
+            <div id="validate"></div>
+            <hr id="vspace">
+            <form method="post">
+               <input type="text" placeholder="Confirm" autocomplete="off" class="date_cancel" name="confirm">
+               <hr>
+					<input type="submit" value="Cancel Request" name="date_cancel" disabled>
+				</form>
+			';
+      }
       
 	}
 ?>

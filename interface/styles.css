@@ -100,24 +100,24 @@ hr {
 	padding: 15px;
 }
 
-#people-tbl, #person-tbl {
+#people-tbl, #person-tbl, #request-tbl {
 	border: 1px solid #E7EAED;
    border-right: 0px solid black;
    border-bottom: 0px solid black;
    margin-bottom: 15px;
 }
 
-#person-tbl {
+#person-tbl, #request-tbl {
    border-right: 1px solid #E7EAED;
 }
 
-#people-tbl td, #person-tbl td {
+#people-tbl td, #person-tbl td, #request-tbl td {
 	padding: 6px;
    border-right: 1px solid #E7EAED;
    border-bottom: 1px solid #E7EAED;
 }
 
-#person-tbl td {
+#person-tbl td, #request-tbl td {
    border-right: 0px solid #E7EAED;
 }
 
@@ -125,16 +125,15 @@ hr {
    text-align: right;
 }
 
-#people-tbl tr:nth-child(odd), #person-tbl tr:nth-child(odd) {
+#people-tbl tr:nth-child(odd), #person-tbl tr:nth-child(odd), #request-tbl tr:nth-child(odd) {
 	background: #F6F6F6;
 }
 
-#people-tbl tr:first-child, #person-tbl tr:first-child {
+#people-tbl tr:first-child, #person-tbl tr:first-child, #request-tbl tr:first-child {
 	background: #F0F7FF;
 }
 
 #people-tbl tr:first-child td, #person-tbl tr:first-child td {
-   text-decoration: underline;
 }
 
 #person-tbl tr:first-child td:last-child {
@@ -145,10 +144,22 @@ hr {
    width: 25%;
 }
 
+#request-tbl td:nth-child(1), #request-tbl td:nth-child(3) {
+   width: 20%;
+}
+
+#request-tbl td:nth-child(2) {
+   width: 60%;
+}
+
+#request-tbl td:nth-child(3) {
+   text-align: right;
+}
+
 #success, #error, .row {
 	background: url('img/success.png');
 	padding: 8px;
-	margin-bottom: 10px;
+	margin-bottom: 15px;
 	border-radius: 4px;
 	border: 1px solid #CECECE;
 }
@@ -256,14 +267,14 @@ input[type="submit"]:disabled {
    margin-left: 10px;
 }
 
-#new li:hover {
-   text-decoration: underline;
-}
-
 #new a:link, #new a:visited, #new a:hover {
 	color: #21759B;
 	padding: 5px 9px;
 	display: block;
+}
+
+#new a:hover {
+   text-decoration: underline;
 }
 
 #comments {
@@ -293,4 +304,14 @@ input[type="submit"]:disabled {
 
 .comments-row td:nth-child(2) {
    text-align: right;
+}
+
+#cross-request {
+   background: #F1F1F1;
+   border: 1px solid #CECECE;
+   padding: 5px 7px;
+   border-radius: 4px;
+   color: #505050;
+   width: fit-content;
+   float: right;
 }

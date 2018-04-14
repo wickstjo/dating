@@ -22,11 +22,12 @@
          }
       }
 
+      // PRINT TABLE WITH VALUES
       public function show() {
          echo '
             <table id="person-tbl">
                <tr>
-                  <td>Profile of ' . ucfirst($this->username) . '</td>
+                  <td>Profile of <u>' . ucfirst($this->username) . '</u></td>
                   <td>&nbsp;</td>
                </tr>
                <tr>
@@ -54,12 +55,51 @@
          ';
       }
 
+      // FOR FETCHING VALUES
       public function fetch($var) {
          return $this->$var;
       }
 
+      // FOR SETTING VALUES
       public function set($var, $value) {
          $this->$var = $value;
+      }
+
+      // PRINT REQUEST DATE BUTTON
+      public function button() {
+         
+         // CHECK IF THERE IS A REQUEST PENDING FROM LOGGED USER
+         if (isset($_SESSION['auth']) && $_SESSION['auth']->fetch('username') != $_GET['username']) {
+            $pending = db::instance()->count('SELECT * FROM requests WHERE fromUser = ? AND toUser = ?', array($_SESSION['auth']->fetch('username'), $this->username));
+         }
+
+         // FORMAT LABELS ACCORDINGLY
+         if ($pending != 0) {
+            $header = 'Cancel Request';
+            $name = 'date_cancel';
+
+         } else {
+            $header = 'Ask Out';
+            $name = 'date_request';
+         }
+
+         // IF THE OTHER PERSON ALREADY HAS A PENDING REQUEST FROM THE SAME SOURCE
+         $crossCheck = db::instance()->count('SELECT * FROM requests WHERE toUser = ? AND fromUser = ?', array($_SESSION['auth']->fetch('username'), $this->username));
+         
+         // PRINT CONTENT ACCORDINGLY
+         if ($crossCheck != 0) {
+            $content = '<div id="cross-request">You have a pending request from ' . ucfirst($this->username) . '!</div>';
+         } else {
+            $content = '<li><a href="javascript: void(0)" name="' . $name . '">' . $header . '</a></li>';
+         }
+
+         echo '
+            <div id="new">
+               <ul>
+                  ' . $content . '
+               </ul>
+            </div>
+         ';
       }
    }
 ?>
