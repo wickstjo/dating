@@ -5,5 +5,9 @@ RewriteBase /
 RewriteRule (?i)^people/?$ people.php [L]
 RewriteRule (?i)^people/([^/.]+)/?$ people.php?username=$1 [L]
 
+# DATES
+RewriteRule (?i)^dates/?$ dates.php [L]
+RewriteRule (?i)^dates/([^/.]+)/?$ dates.php?code=$1 [L]
+
 # LOGOUT
 RewriteRule (?i)^logout$ index.php?logout=true [L]

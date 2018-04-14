@@ -315,3 +315,15 @@ input[type="submit"]:disabled {
    width: fit-content;
    float: right;
 }
+
+a:link.accept, a:visited.accept {
+   color: #4A8D74;
+}
+
+a:link.decline, a:visited.decline {
+   color: #D54E21;
+}
+
+a:hover.accept, a:hover.decline {
+   text-decoration: underline;
+} 

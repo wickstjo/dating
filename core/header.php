@@ -3,15 +3,15 @@
    $user = '';
 
    // CHECK IF USER IS ONLINE TO LOCATE CORRECT MENU
-   if (isset($_SESSION['auth'])) {
+   if (session::logged()) {
       $status = 'online';
-      $user = $_SESSION['auth']->fetch('username');
+      $user = session::username();
    } else {
       $status = 'offline';
    }
 
    // OVERWRITE SECTION VARIABLE IN PEOPLE.PHP IF YOU'RE VIEWING YOUR OWN PROFILE
-   if (isset($_GET['username']) && isset($_SESSION['auth']) && $_GET['username'] == $_SESSION['auth']->fetch('username')) {
+   if (get::isset('username') && session::logged() && get::val('username') == session::username()) {
 		$section = 'profile';
 	}
 
@@ -26,6 +26,7 @@
             array('dashboard', ''),
             array('people', 'people'),
             array('profile', 'people/' . $user),
+            array('dates', 'dates'),
          ),
 
          // OFFLINE

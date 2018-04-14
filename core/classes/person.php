@@ -69,8 +69,8 @@
       public function button() {
          
          // CHECK IF THERE IS A REQUEST PENDING FROM LOGGED USER
-         if (isset($_SESSION['auth']) && $_SESSION['auth']->fetch('username') != $_GET['username']) {
-            $pending = db::instance()->count('SELECT * FROM requests WHERE fromUser = ? AND toUser = ?', array($_SESSION['auth']->fetch('username'), $this->username));
+         if (session::logged() && session::username() != $_GET['username']) {
+            $pending = db::instance()->count('SELECT * FROM requests WHERE fromUser = ? AND toUser = ?', array(session::username(), $this->username));
          }
 
          // FORMAT LABELS ACCORDINGLY
@@ -84,7 +84,7 @@
          }
 
          // IF THE OTHER PERSON ALREADY HAS A PENDING REQUEST FROM THE SAME SOURCE
-         $crossCheck = db::instance()->count('SELECT * FROM requests WHERE toUser = ? AND fromUser = ?', array($_SESSION['auth']->fetch('username'), $this->username));
+         $crossCheck = db::instance()->count('SELECT * FROM requests WHERE toUser = ? AND fromUser = ?', array(session::username(), $this->username));
          
          // PRINT CONTENT ACCORDINGLY
          if ($crossCheck != 0) {

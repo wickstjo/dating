@@ -8,10 +8,10 @@
       misc::redirect('home');
    }
 
-   if (isset($_SESSION['auth'])) {
-      echo '<div id="success">Greetings ' . $_SESSION['auth']->fetch('username') . '!</div>';
+   if (session::logged()) {
+      echo '<div id="success">Greetings ' . session::username() . '!</div>';
 
-      $requests = new requests($_SESSION['auth']->fetch('username'));
+      $requests = new requests(session::username());
       $requests->show();
 
    } else {

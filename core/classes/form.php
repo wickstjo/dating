@@ -40,12 +40,12 @@
             <div id="validate"></div>
             <hr id="vspace">
             <form method="post">
-               <input type="text" placeholder="' . $_SESSION['auth']->fetch('name') . '" autocomplete="off" class="settings" name="name">
-               <input type="text" placeholder="' . $_SESSION['auth']->fetch('email') . '" autocomplete="off" class="settings" name="email">
-               <input type="text" placeholder="' . $_SESSION['auth']->fetch('zip') . '" autocomplete="off" class="settings" name="zip">
-               <input type="number" placeholder="' . $_SESSION['auth']->fetch('income') . '" autocomplete="off" class="settings" name="income">
-               <input type="text" placeholder="' . $_SESSION['auth']->fetch('seeks') . '" autocomplete="off" class="settings" name="seeks">
-               <input type="text" placeholder="' . $_SESSION['auth']->fetch('descr') . '" autocomplete="off" class="settings" name="descr">
+               <input type="text" placeholder="' . session::name() . '" autocomplete="off" class="settings" name="name">
+               <input type="text" placeholder="' . session::email() . '" autocomplete="off" class="settings" name="email">
+               <input type="text" placeholder="' . session::zip() . '" autocomplete="off" class="settings" name="zip">
+               <input type="number" placeholder="' . session::income() . '" autocomplete="off" class="settings" name="income">
+               <input type="text" placeholder="' . session::seeks() . '" autocomplete="off" class="settings" name="seeks">
+               <input type="text" placeholder="' . session::descr() . '" autocomplete="off" class="settings" name="descr">
                <hr>
 					<input type="submit" value="Change Settings" name="settings" disabled>
 				</form>

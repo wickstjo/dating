@@ -15,7 +15,7 @@
             break;
 
             case 'profile':
-               return header("location: {$host}/people/{$_SESSION['auth']->fetch('username')}");
+               return header("location: {$host}/people/{session::username()}");
             break;
 
             case 'self':
