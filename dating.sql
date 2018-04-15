@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 15, 2018 at 04:24 PM
+-- Generation Time: Apr 15, 2018 at 06:34 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 7.1.1
 
@@ -30,8 +30,19 @@ CREATE TABLE `comments` (
   `id` int(11) NOT NULL,
   `ref` int(6) NOT NULL,
   `author` varchar(50) COLLATE utf8_bin NOT NULL,
-  `msg` varchar(300) COLLATE utf8_bin NOT NULL
+  `comment` varchar(300) COLLATE utf8_bin NOT NULL,
+  `date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Dumping data for table `comments`
+--
+
+INSERT INTO `comments` (`id`, `ref`, `author`, `comment`, `date`) VALUES
+(1, 655413, 'wickstjo', 'Eyy lmao', '2018-04-15 17:44:49'),
+(3, 655413, 'wickstjo', 'Daaaamn daniel', '2018-04-15 18:21:53'),
+(4, 655413, 'fuckyou', 'Whadupppp boiii', '2018-04-15 18:22:14'),
+(5, 460391, 'eyylmao', 'm8888888', '2018-04-15 18:23:58');
 
 -- --------------------------------------------------------
 
@@ -44,16 +55,16 @@ CREATE TABLE `dates` (
   `code` int(6) NOT NULL,
   `person1` varchar(50) COLLATE utf8_bin NOT NULL,
   `person2` varchar(50) COLLATE utf8_bin NOT NULL,
-  `date` datetime NOT NULL,
-  `comments` int(6) NOT NULL
+  `date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
 -- Dumping data for table `dates`
 --
 
-INSERT INTO `dates` (`id`, `code`, `person1`, `person2`, `date`, `comments`) VALUES
-(1, 655413, 'wickstjo', 'fuckyou', '2018-04-15 13:27:58', 174164);
+INSERT INTO `dates` (`id`, `code`, `person1`, `person2`, `date`) VALUES
+(1, 655413, 'wickstjo', 'fuckyou', '2018-04-15 13:27:58'),
+(2, 460391, 'eyylmao', 'fuckyou', '2018-04-15 18:23:51');
 
 -- --------------------------------------------------------
 
@@ -134,12 +145,12 @@ ALTER TABLE `requests`
 -- AUTO_INCREMENT for table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `dates`
 --
 ALTER TABLE `dates`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `people`
 --
@@ -149,7 +160,7 @@ ALTER TABLE `people`
 -- AUTO_INCREMENT for table `requests`
 --
 ALTER TABLE `requests`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -4,7 +4,6 @@
       private $person1;
       private $person2;
       private $date;
-      private $comments;
 
       public function __construct($code) {
          $result = db::instance()->get("SELECT * FROM dates WHERE code = ?", array($code));
@@ -14,7 +13,6 @@
             $this->person1 = $r['person1'];
             $this->person2 = $r['person2'];
             $this->date = $r['date'];
-            $this->comments = $r['comments'];
          }
       }
 
@@ -51,8 +49,8 @@
          return $array;
       }
 
-      public function comments() {
-         return $this->comments;
+      public function code() {
+         return $this->code;
       }
 
    }

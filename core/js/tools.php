@@ -10,7 +10,7 @@
          $source = post::val('source');
       }
 
-      $list = array('login', 'register', 'settings', 'date_request', 'date_cancel', 'accept', 'decline');
+      $list = array('login', 'register', 'settings', 'date_request', 'date_cancel', 'accept', 'decline', 'comment', 'remove');
 
       // CHECK THAT QUERY FALLS WITHIN ALLOWED SECTIONS
       if (in_array($id, $list)) {
@@ -37,6 +37,12 @@
             break;
             case 'decline':
                form::decline($source);
+            break;
+            case 'comment':
+               form::comment();
+            break;
+            case 'remove':
+               form::remove($source);
             break;
          }
       } else {

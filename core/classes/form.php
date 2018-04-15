@@ -89,15 +89,27 @@
 			';
       }
 
-      public function decline($from) {
+      public function comment() {
          echo '
             <div id="validate"></div>
             <hr id="vspace">
             <form method="post">
-               <input type="text" placeholder="Decline" autocomplete="off" class="decline" name="decline_confirm">
-               <input type="hidden" value="' . $from . '" name="from">
+               <input type="text" placeholder="Comment" autocomplete="off" class="comment" name="comment">
                <hr>
-					<input type="submit" value="Decline Request" name="decline" disabled>
+					<input type="submit" value="Post Comment" name="post_comment" disabled>
+				</form>
+			';
+      }
+
+      public function remove($id) {
+         echo '
+            <div id="validate"></div>
+            <hr id="vspace">
+            <form method="post">
+               <input type="text" placeholder="Remove" autocomplete="off" class="remove_comment" name="remove_confirm">
+               <input type="hidden" value="' . $id . '" name="from">
+               <hr>
+					<input type="submit" value="Remove Comment" name="remove_comment" disabled>
 				</form>
 			';
       }

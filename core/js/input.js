@@ -373,4 +373,64 @@ $("#toolbox input").on('keydown keyup change', function() {
       }
    }
 
+   // POST COMMENT
+   if (source == 'comment') {
+      var comment = $("[name=comment]").val();
+
+      // CHECK THAT BOTH FIELDS ARE FILLED
+      if (comment.length < 3 || comment.length > 300) {
+         errors.push('Comment must be between 3 and 300 characters.');
+      }
+
+      // ON SUCCESS
+      if (errors.length == 0) {
+         $("[type=submit]").prop('disabled', false);
+         $('#validate, #vspace').css('display', 'none');
+
+      // ON ERROR
+      } else {
+         $("[type=submit]").prop('disabled', true);
+
+         for(x = 0; x < errors.length; x++) { loopList.push('<div class="row">' + errors[x] + '</div>'); }
+         $("#validate").html(loopList.join(""));
+
+         // HIDE IF ALL FIELDS ARE EMPTY, SHOW IF NOT
+         if (comment.length == 0) {
+            $('#validate, #vspace').css('display', 'none');
+         } else {
+            $('#validate, #vspace').css('display', 'block');
+         }
+      }
+   }
+
+   // REMOVE COMMENT
+   if (source == 'remove_comment') {
+      var remove_confirm = $("[name=remove_confirm]").val();
+
+      // CHECK THAT BOTH FIELDS ARE FILLED
+      if (remove_confirm != 'Remove') {
+         errors.push('Type in "Remove" to finalize.');
+      }
+
+      // ON SUCCESS
+      if (errors.length == 0) {
+         $("[type=submit]").prop('disabled', false);
+         $('#validate, #vspace').css('display', 'none');
+
+      // ON ERROR
+      } else {
+         $("[type=submit]").prop('disabled', true);
+
+         for(x = 0; x < errors.length; x++) { loopList.push('<div class="row">' + errors[x] + '</div>'); }
+         $("#validate").html(loopList.join(""));
+
+         // HIDE IF ALL FIELDS ARE EMPTY, SHOW IF NOT
+         if (remove_confirm.length == 0) {
+            $('#validate, #vspace').css('display', 'none');
+         } else {
+            $('#validate, #vspace').css('display', 'block');
+         }
+      }
+   }
+
 });

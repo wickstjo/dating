@@ -2,7 +2,7 @@ $('a').on('click', function() {
 
    // PICK UP AND SAVE NAME ATTR TO KNOW WHICH FORM TO VALIDATE
 	var name = $(event.target).attr("name");
-   var whitelist = ['login', 'register', 'settings', 'date_request', 'date_cancel', 'accept', 'decline'];
+   var whitelist = ['login', 'register', 'settings', 'date_request', 'date_cancel', 'accept', 'decline', 'comment', 'remove'];
 
    // TRIGGER IF NAME IS WITHIN WHITELIST
 	if (jQuery.inArray(name, whitelist) != -1) {

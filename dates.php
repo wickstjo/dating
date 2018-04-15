@@ -34,7 +34,7 @@
                $date->show();
 
                // PRINT OUT COMMENTS
-               $comments = new comments($date->comments());
+               $comments = new comments($date->code());
 
                // IF COMMENTS COUNT != 0
                if ($comments->count() != 0) {

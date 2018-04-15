@@ -89,11 +89,11 @@
       }
 
       // GENERATE UNIQUE DATE ID
-      public function generateCode($ref) {
+      public function generateCode() {
          $code = rand(100000, 999999);
+         $check = db::instance()->count("SELECT * FROM dates WHERE code = ?", array($code));
 
-         $check = db::instance()->count("SELECT * FROM dates WHERE {$ref} = ?", array($code));
-
+         // LOOP UNTIL CODE CANNOT BE FOUND IN DB
          while ($check == 1) {
             $code = rand(100000, 999999);
          }
