@@ -14,6 +14,10 @@
                return header("location: {$host}people");
             break;
 
+            case 'dates':
+               return header("location: {$host}dates/{$q}");
+            break;
+
             case 'profile':
                return header("location: {$host}/people/{session::username()}");
             break;
@@ -57,6 +61,18 @@
          return $bool;
       }
 
+      // CHECK IF DATE-CODE EXISTS
+      public function codeExists($code) {
+         $count = db::instance()->count('SELECT * FROM dates WHERE code = ?', array($code));
+         $bool = false;
+
+         if ($count == 1) {
+            $bool = true;
+         }
+
+         return $bool;
+      }
+
       // SUCCESS DIV
       public function success($text) {
          echo '<div id="success">' . $text . '</div>';
@@ -73,15 +89,41 @@
       }
 
       // GENERATE UNIQUE DATE ID
-      public function generateDate() {
+      public function generateCode($ref) {
          $code = rand(100000, 999999);
-         $check = db::instance()->count("SELECT * FROM dates WHERE code = ?", array($code));
+
+         $check = db::instance()->count("SELECT * FROM dates WHERE {$ref} = ?", array($code));
 
          while ($check == 1) {
             $code = rand(100000, 999999);
          }
 
          return $code;
+      }
+
+      // REFORMAT DATES
+      public function date($date, $type) {
+         switch ($type) {
+            case 'short';
+               return date('d/m/y', strtotime($date));
+            break;
+
+            case 'shorter';
+               return date('d/m', strtotime($date));
+            break;
+
+            case 'long';
+               return date('d/m/Y @ h:i A', strtotime($date));
+            break;
+
+            case 'txt';
+               return date('F dS, Y', strtotime($date));
+            break;
+
+            case 'title';
+               return date('F dS', strtotime($date));
+            break;
+         }
       }
  
    }

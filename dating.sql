@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 14, 2018 at 08:33 PM
+-- Generation Time: Apr 15, 2018 at 04:24 PM
 -- Server version: 10.1.21-MariaDB
 -- PHP Version: 7.1.1
 
@@ -19,6 +19,41 @@ SET time_zone = "+00:00";
 --
 -- Database: `dating`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `comments`
+--
+
+CREATE TABLE `comments` (
+  `id` int(11) NOT NULL,
+  `ref` int(6) NOT NULL,
+  `author` varchar(50) COLLATE utf8_bin NOT NULL,
+  `msg` varchar(300) COLLATE utf8_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `dates`
+--
+
+CREATE TABLE `dates` (
+  `id` int(11) NOT NULL,
+  `code` int(6) NOT NULL,
+  `person1` varchar(50) COLLATE utf8_bin NOT NULL,
+  `person2` varchar(50) COLLATE utf8_bin NOT NULL,
+  `date` datetime NOT NULL,
+  `comments` int(6) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+--
+-- Dumping data for table `dates`
+--
+
+INSERT INTO `dates` (`id`, `code`, `person1`, `person2`, `date`, `comments`) VALUES
+(1, 655413, 'wickstjo', 'fuckyou', '2018-04-15 13:27:58', 174164);
 
 -- --------------------------------------------------------
 
@@ -45,7 +80,8 @@ CREATE TABLE `people` (
 INSERT INTO `people` (`id`, `username`, `name`, `password`, `email`, `zip`, `income`, `descr`, `seeks`) VALUES
 (1, 'wickstjo', 'john wickstrom', 'd74ff0ee8da3b9806b18c877dbf29bbde50b5bd8e4dad7a3a725000feb82e8f1', 'wickstjo@arcada.fi', '02400', 1000000, 'CASH MONEY', 'female'),
 (2, 'datboi', 'urho kekkonen', 'd74ff0ee8da3b9806b18c877dbf29bbde50b5bd8e4dad7a3a725000feb82e8f1', 'datboi@geocities.com', '00820', 95000, 'god tier memer.', 'other'),
-(4, 'eyylmao', 'eyy lmao', 'd74ff0ee8da3b9806b18c877dbf29bbde50b5bd8e4dad7a3a725000feb82e8f1', 'eyy@lmao.com', '565465', 500000, 'DOPE AT WOW', 'male');
+(4, 'eyylmao', 'eyy lmao', 'd74ff0ee8da3b9806b18c877dbf29bbde50b5bd8e4dad7a3a725000feb82e8f1', 'eyy@lmao.com', '565465', 500000, 'DOPE AT WOW', 'male'),
+(5, 'fuckyou', 'fuck you', 'd74ff0ee8da3b9806b18c877dbf29bbde50b5bd8e4dad7a3a725000feb82e8f1', 'fuck@you.com', '02400', 1000000000, 'fuck you fuck you', 'bitches');
 
 -- --------------------------------------------------------
 
@@ -63,15 +99,20 @@ CREATE TABLE `requests` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 --
--- Dumping data for table `requests`
---
-
-INSERT INTO `requests` (`id`, `fromUser`, `toUser`, `msg`, `status`, `date`) VALUES
-(5, 'wickstjo', 'eyylmao', 'testngggggg', 'pending', '2018-04-14 18:08:04');
-
---
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `comments`
+--
+ALTER TABLE `comments`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `dates`
+--
+ALTER TABLE `dates`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `people`
@@ -90,15 +131,25 @@ ALTER TABLE `requests`
 --
 
 --
+-- AUTO_INCREMENT for table `comments`
+--
+ALTER TABLE `comments`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `dates`
+--
+ALTER TABLE `dates`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
 -- AUTO_INCREMENT for table `people`
 --
 ALTER TABLE `people`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `requests`
 --
 ALTER TABLE `requests`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

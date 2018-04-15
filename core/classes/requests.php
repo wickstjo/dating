@@ -22,7 +22,7 @@
          foreach ($this->object as $res => $r) {
             echo '
                <tr>
-                  <td>' . $r['fromUser'] . '</td>
+                  <td><a href="people/' . $r['fromUser'] . '">' . ucfirst($r['fromUser']) . '</a></td>
                   <td>' . $r['msg'] . '</td>
                   <td><a href="javascript: void(0)" class="accept" name="accept" label="' . $r['fromUser'] . '">Accept</a> &nbsp;-&nbsp; <a href="javascript: void(0)" class="decline" name="decline" label="' . $r['fromUser'] . '">Decline</a></td>
                </tr>

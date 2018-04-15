@@ -141,46 +141,24 @@
             )
          );
 
+         // SAVE ID FOR LATER REDIRECT
+         $dateID = misc::generateCode('code');
+
          db::instance()->action(
-            'INSERT INTO dates (code, person1, person2, date) VALUES (?, ?, ?, ?)',
+            'INSERT INTO dates (code, person1, person2, date, comments) VALUES (?, ?, ?, ?, ?)',
             array(
-               misc::generateDate(),
+               $dateID,
                session::username(),
                post::val('from'),
-               date('Y-m-d H:i:s')
+               date('Y-m-d H:i:s'),
+               misc::generateCode('comments')
             )
          );
 
-         misc::redirect('self');
+         // REDIRECT TO GENERATED ID
+         misc::redirect('dates', $dateID);
       }
 
-   // ACCEPT REQUEST
-   } else if (post::isset('accept')) {
-         
-      if (post::val('accept_confirm') == 'Accept' && !empty(post::val('from'))) {
-         
-         db::instance()->action(
-            'DELETE FROM requests WHERE fromUser = ? AND toUser = ?',
-            array(
-               post::val('from'),
-               session::username()
-            )
-         );
-
-         db::instance()->action(
-            'INSERT INTO dates (code, person1, person2, date) VALUES (?, ?, ?, ?)',
-            array(
-               misc::generateDate(),
-               session::username(),
-               post::val('from'),
-               date('Y-m-d H:i:s')
-            )
-         );
-
-         misc::redirect('self');
-      }
-
-   // DECLINE REQUEST
    } else if (post::isset('decline')) {
             
       if (post::val('decline_confirm') == 'Decline' && !empty(post::val('from'))) {

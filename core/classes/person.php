@@ -50,8 +50,8 @@
                   <td>Seeks:</td>
                   <td>' . ucfirst($this->seeks) . '</td>
                </tr>
-               </table>
-               <div id="success">' . $this->descr . '</div>
+            </table>
+            <div id="success">' . $this->descr . '</div>
          ';
       }
 
