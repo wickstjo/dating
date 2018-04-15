@@ -25,7 +25,6 @@
          'online' => array(
             array('dashboard', ''),
             array('people', 'people'),
-            array('profile', 'people/' . $user),
             array('dates', 'dates'),
          ),
 
@@ -41,6 +40,7 @@
 
          // ONLINE
          'online' => array(
+            array('profile', 'people/' . $user),
             array('settings', 'none'),
             array('logout', 'logout'),
          ),

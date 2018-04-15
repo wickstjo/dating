@@ -283,34 +283,94 @@ $("#toolbox input").on('keydown keyup change', function() {
       }
    }
 
-      // DATE CANCEL
-      if (source == 'date_cancel') {
-         var confirm = $("[name=confirm]").val();
-   
-         // CHECK THAT BOTH FIELDS ARE FILLED
-         if (confirm != 'Confirm') {
-            errors.push('Type in "Confirm" to finalize.');
-         }
-   
-         // ON SUCCESS
-         if (errors.length == 0) {
-            $("[type=submit]").prop('disabled', false);
+   // DATE CANCEL
+   if (source == 'date_cancel') {
+      var confirm = $("[name=confirm]").val();
+
+      // CHECK THAT BOTH FIELDS ARE FILLED
+      if (confirm != 'Confirm') {
+         errors.push('Type in "Confirm" to finalize.');
+      }
+
+      // ON SUCCESS
+      if (errors.length == 0) {
+         $("[type=submit]").prop('disabled', false);
+         $('#validate, #vspace').css('display', 'none');
+
+      // ON ERROR
+      } else {
+         $("[type=submit]").prop('disabled', true);
+
+         for(x = 0; x < errors.length; x++) { loopList.push('<div class="row">' + errors[x] + '</div>'); }
+         $("#validate").html(loopList.join(""));
+
+         // HIDE IF ALL FIELDS ARE EMPTY, SHOW IF NOT
+         if (confirm.length == 0) {
             $('#validate, #vspace').css('display', 'none');
-   
-         // ON ERROR
          } else {
-            $("[type=submit]").prop('disabled', true);
-   
-            for(x = 0; x < errors.length; x++) { loopList.push('<div class="row">' + errors[x] + '</div>'); }
-            $("#validate").html(loopList.join(""));
-   
-            // HIDE IF ALL FIELDS ARE EMPTY, SHOW IF NOT
-            if (confirm.length == 0) {
-               $('#validate, #vspace').css('display', 'none');
-            } else {
-               $('#validate, #vspace').css('display', 'block');
-            }
+            $('#validate, #vspace').css('display', 'block');
          }
       }
+   }
+
+   // ACCEPT REQUEST
+   if (source == 'accept') {
+      var accept_confirm = $("[name=accept_confirm]").val();
+
+      // CHECK THAT BOTH FIELDS ARE FILLED
+      if (accept_confirm != 'Accept') {
+         errors.push('Type in "Accept" to finalize.');
+      }
+
+      // ON SUCCESS
+      if (errors.length == 0) {
+         $("[type=submit]").prop('disabled', false);
+         $('#validate, #vspace').css('display', 'none');
+
+      // ON ERROR
+      } else {
+         $("[type=submit]").prop('disabled', true);
+
+         for(x = 0; x < errors.length; x++) { loopList.push('<div class="row">' + errors[x] + '</div>'); }
+         $("#validate").html(loopList.join(""));
+
+         // HIDE IF ALL FIELDS ARE EMPTY, SHOW IF NOT
+         if (accept_confirm.length == 0) {
+            $('#validate, #vspace').css('display', 'none');
+         } else {
+            $('#validate, #vspace').css('display', 'block');
+         }
+      }
+   }
+
+   // DECLINE REQUEST
+   if (source == 'decline') {
+      var decline_confirm = $("[name=decline_confirm]").val();
+
+      // CHECK THAT BOTH FIELDS ARE FILLED
+      if (decline_confirm != 'Decline') {
+         errors.push('Type in "Decline" to finalize.');
+      }
+
+      // ON SUCCESS
+      if (errors.length == 0) {
+         $("[type=submit]").prop('disabled', false);
+         $('#validate, #vspace').css('display', 'none');
+
+      // ON ERROR
+      } else {
+         $("[type=submit]").prop('disabled', true);
+
+         for(x = 0; x < errors.length; x++) { loopList.push('<div class="row">' + errors[x] + '</div>'); }
+         $("#validate").html(loopList.join(""));
+
+         // HIDE IF ALL FIELDS ARE EMPTY, SHOW IF NOT
+         if (decline_confirm.length == 0) {
+            $('#validate, #vspace').css('display', 'none');
+         } else {
+            $('#validate, #vspace').css('display', 'block');
+         }
+      }
+   }
 
 });

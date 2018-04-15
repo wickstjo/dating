@@ -57,14 +57,31 @@
          return $bool;
       }
 
+      // SUCCESS DIV
+      public function success($text) {
+         echo '<div id="success">' . $text . '</div>';
+      }
+
       // ERROR DIV
       public function error($text) {
-         echo '<div id="error">' . $text . '.</div>';
+         echo '<div id="error">' . $text . '</div>';
       }
 
       // FORMAT INCOME NUMBER PROPERLY
       public function income($number) {
          return number_format($number, 0, '', ' ');
+      }
+
+      // GENERATE UNIQUE DATE ID
+      public function generateDate() {
+         $code = rand(100000, 999999);
+         $check = db::instance()->count("SELECT * FROM dates WHERE code = ?", array($code));
+
+         while ($check == 1) {
+            $code = rand(100000, 999999);
+         }
+
+         return $code;
       }
  
    }

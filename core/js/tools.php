@@ -1,9 +1,16 @@
 <?php
     require_once '../init.php';
 
-   if (isset($_POST['id'])) {
-      $id = $_POST['id'];
-      $list = array('login', 'register', 'settings', 'date_request', 'date_cancel');
+   if (post::isset('id')) {
+
+      $id = post::val('id');
+
+      // ACCEPT AND DECLINE NEED ANOTHER VARIABLE
+      if (post::isset('source')) {
+         $source = post::val('source');
+      }
+
+      $list = array('login', 'register', 'settings', 'date_request', 'date_cancel', 'accept', 'decline');
 
       // CHECK THAT QUERY FALLS WITHIN ALLOWED SECTIONS
       if (in_array($id, $list)) {
@@ -24,6 +31,12 @@
             break;
             case 'date_cancel':
                form::date_cancel();
+            break;
+            case 'accept':
+               form::accept($source);
+            break;
+            case 'decline':
+               form::decline($source);
             break;
          }
       } else {

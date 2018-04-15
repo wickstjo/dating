@@ -1,9 +1,12 @@
 <?php
    class requests {
       private $object;
+      private $count;
 
       public function __construct($username) {
-         $this->object = db::instance()->get('SELECT * FROM requests WHERE toUser = ? ORDER BY date', array(strtolower($username)));
+         $username = strtolower($username);
+         $this->object = db::instance()->get('SELECT * FROM requests WHERE toUser = ? ORDER BY date', array($username));
+         $this->count = db::instance()->count('SELECT * FROM requests WHERE toUser = ?', array($username));
       }
 
       public function show() {
@@ -21,12 +24,16 @@
                <tr>
                   <td>' . $r['fromUser'] . '</td>
                   <td>' . $r['msg'] . '</td>
-                  <td><a href="javascript: void(0)" class="accept" name="accept_request">Accept</a> &nbsp;-&nbsp; <a href="javascript: void(0)" class="decline" name="decline_request">Decline</a></td>
+                  <td><a href="javascript: void(0)" class="accept" name="accept" label="' . $r['fromUser'] . '">Accept</a> &nbsp;-&nbsp; <a href="javascript: void(0)" class="decline" name="decline" label="' . $r['fromUser'] . '">Decline</a></td>
                </tr>
             ';
          }
 
          echo '</table>';
+      }
+
+      public function count() {
+         return $this->count;
       }
 
    }

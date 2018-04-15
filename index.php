@@ -3,19 +3,28 @@
 	require_once 'core/header.php';
 
    // LOGOUT FUNCTIONALITY
-	if (isset($_GET['logout'])) {
+	if (get::isset('logout')) {
 		unset($_SESSION['auth']);
       misc::redirect('home');
    }
 
+   // IF USER IS LOGGED IN
    if (session::logged()) {
-      echo '<div id="success">Greetings ' . session::username() . '!</div>';
+      misc::success('Greetings ' . ucfirst(session::username()) . '!');
 
       $requests = new requests(session::username());
-      $requests->show();
 
+      // SHOW REQUESTS IF COUNT != 0
+      if ($requests->count() != 0) {
+         $requests->show();
+         
+      } else {
+         misc::error('There are no pending date requests.');
+      }
+
+   // IF USER IS LOGGED OUT
    } else {
-      echo '<div id="error">Hello Stranger! How about <a href="javascript: void(0)" name="register">registering</a>?</div>';
+      misc::error('Hello Stranger! How about <a href="javascript: void(0)" name="register">registering</a>?');
    }
 
    require_once 'core/footer.php';

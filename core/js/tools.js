@@ -2,14 +2,20 @@ $('a').on('click', function() {
 
    // PICK UP AND SAVE NAME ATTR TO KNOW WHICH FORM TO VALIDATE
 	var name = $(event.target).attr("name");
+   var whitelist = ['login', 'register', 'settings', 'date_request', 'date_cancel', 'accept', 'decline'];
 
-   // WHITEBOX TRIGGER
-	if (name == 'login' || name == 'register' || name == 'settings' || name == 'date_request' || name == 'date_cancel') {
+   // TRIGGER IF NAME IS WITHIN WHITELIST
+	if (jQuery.inArray(name, whitelist) != -1) {
+
+      // SEND IN SOURCE VAR WHEN ACCEPTING/DECLINING REQUESTS
+      if ($(event.target).attr("label") !== 'undefined') {
+         var source = $(event.target).attr("label");
+      }
 
 		$.ajax({
          type: 'POST',
          url: '/core/js/tools.php',
-         data: {id: name},
+         data: {id: name, source: source},
          success: function(data) {
 
             // PUSH IN CORRECT CONTENT FROM FORM CLASS

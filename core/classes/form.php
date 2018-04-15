@@ -75,6 +75,32 @@
 				</form>
 			';
       }
+
+      public function accept($from) {
+         echo '
+            <div id="validate"></div>
+            <hr id="vspace">
+            <form method="post">
+               <input type="text" placeholder="Accept" autocomplete="off" class="accept" name="accept_confirm">
+               <input type="hidden" value="' . $from . '" name="from">
+               <hr>
+					<input type="submit" value="Accept Request" name="accept" disabled>
+				</form>
+			';
+      }
+
+      public function decline($from) {
+         echo '
+            <div id="validate"></div>
+            <hr id="vspace">
+            <form method="post">
+               <input type="text" placeholder="Decline" autocomplete="off" class="decline" name="decline_confirm">
+               <input type="hidden" value="' . $from . '" name="from">
+               <hr>
+					<input type="submit" value="Decline Request" name="decline" disabled>
+				</form>
+			';
+      }
       
 	}
 ?>
