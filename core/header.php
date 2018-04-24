@@ -58,6 +58,7 @@
 	<link rel="stylesheet" href="http://dating.proj/interface/styles.css" type="text/css">
    <meta http-equiv="content-type" content="text/html; charset=UTF-8" lang="sv">
 	<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+   <script type="text/javascript" src="http://dating.proj/core/js/cxr.js"></script>
 </head>
 <body>
 

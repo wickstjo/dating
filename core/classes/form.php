@@ -27,6 +27,8 @@
                <input type="text" placeholder="Email" autocomplete="off" class="register" name="email">
                <input type="text" placeholder="Zip Code" class="register" name="zip">
                <input type="number" placeholder="Yearly Income" autocomplete="off" class="register" name="income">
+               <select id="currency"></select>
+               <input type="hidden" class="settings" name="converted">
                <input type="text" placeholder="What are you seeking?" autocomplete="off" class="register" name="seeks">
                <input type="text" placeholder="Describe yourself" autocomplete="off" class="register" name="descr">
                <hr>

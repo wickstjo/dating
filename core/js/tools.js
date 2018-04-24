@@ -21,6 +21,21 @@ $('a').on('click', function() {
             // PUSH IN CORRECT CONTENT FROM FORM CLASS
             $('#toolbox').html(data);
 
+            // IF THERE IS A <SELECT> ELEMENT, PRINT IN ALL CURRENCIES AS OPTIONS
+            if ($('#currency') !== undefined) {
+
+               // FILL <SELECT> WITH CURRENCIES
+               var headerList = ["<option>Your Local Currency</option>"];
+               var object = JSON.parse(localStorage.getItem('CXR-headers'));
+
+               $.each(object, function (short, long) {
+                  headerList.push("<option>" + long + "</option>");
+               });
+               
+               // CREATE NEEDED SELECT OPTIONS
+               $("#currency").html(headerList.join(""));
+            }
+
             // SHOW TABLE
             $("#tools").css('display', 'table');
 

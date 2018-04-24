@@ -219,7 +219,7 @@ hr {
 	border-radius: 4px;
 }
 
-input, .attending, textarea {
+input, .attending, select {
 	font: inherit;
 	color: inherit;
 	background: url('../interface/img/inner-bg.png');
@@ -326,4 +326,10 @@ a:link.decline, a:visited.decline {
 
 a:hover.accept, a:hover.decline {
    text-decoration: underline;
-} 
+}
+
+select {
+   cursor: pointer;
+   -webkit-appearance: textfield;
+   padding: 7px;
+}
