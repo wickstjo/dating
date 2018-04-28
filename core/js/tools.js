@@ -39,6 +39,9 @@ $('a').on('click', function() {
             // SHOW TABLE
             $("#tools").css('display', 'table');
 
+            // CHANGE MAP Z-INDEX TO NOT BLOCK PROMPT TABLE
+            $("#map").css('z-index', '-1');
+
             // NEEDED FOR VALIDATION TO WORK
             $.getScript("http://dating.proj/core/js/input.js");
          }
@@ -77,8 +80,9 @@ jQuery(document).on('keyup',function(evt) {
 
 		if (value == 'table') {
 			$("#tools").css('display', 'none');
-			$("#toolbox").html();
-		}
+         $("#toolbox").html();
+         $("#map").css('z-index', '1');
+      }
     }
 });
 

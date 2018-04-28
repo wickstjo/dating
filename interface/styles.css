@@ -333,3 +333,9 @@ select {
    -webkit-appearance: textfield;
    padding: 7px;
 }
+
+#map {
+   width: 100%;
+   height: 300px;
+   margin-bottom: 15px;
+}

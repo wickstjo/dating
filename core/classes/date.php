@@ -4,6 +4,7 @@
       private $person1;
       private $person2;
       private $date;
+      private $postal;
 
       public function __construct($code) {
          $result = db::instance()->get("SELECT * FROM dates WHERE code = ?", array($code));
@@ -13,6 +14,7 @@
             $this->person1 = $r['person1'];
             $this->person2 = $r['person2'];
             $this->date = $r['date'];
+            $this->postal = db::instance()->string('SELECT * FROM people WHERE username = ?', 'zip', array($this->person1));
          }
       }
 
@@ -40,6 +42,13 @@
                   <td>' . misc::date($this->date, 'long') . '</td>
                </tr>
             </table>
+         ';
+      }
+
+      public function map() {
+         echo '
+            <div id="map"></div>
+            <script type="text/javascript">geocode("' . $this->postal . '");</script>
          ';
       }
 

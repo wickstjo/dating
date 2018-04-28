@@ -32,6 +32,7 @@
             // CHECK IF VIEWER IS PARTAKING OF THIS DATE
             if (in_array(session::username(), $date->allowed())) {
                $date->show();
+               $date->map();
 
                // PRINT OUT COMMENTS
                $comments = new comments($date->code());
