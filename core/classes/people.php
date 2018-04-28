@@ -14,13 +14,18 @@
       }
 
       public function show() {
+         $curr = 'USD';
+         if (session::logged()) {
+            $curr = session::currency();
+         }
+
          echo '
             <div id="sorting">
             <table id="people-tbl">
                <tr>
                   <td>Username</td>
                   <td>Zip</td>
-                  <td>Income</td>
+                  <td>Income (' . $curr . ')</td>
                   <td>Seeks</td>
                </tr>
          ';
@@ -30,7 +35,7 @@
                <tr>
                   <td><a href="http://' . getenv('HTTP_HOST') . '/people/' . $r['username'] . '">' . ucfirst($r['username']) . '</a></td>
                   <td>' . $r['zip'] . '</td>
-                  <td>' . misc::income($r['income']) . '</td>
+                  <td><div id="money">' . $r['income'] . '</div></td>
                   <td>' . ucfirst($r['seeks']) . '</td>
                </tr>
             ';

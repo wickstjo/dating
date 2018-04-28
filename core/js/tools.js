@@ -29,7 +29,7 @@ $('a').on('click', function() {
                var object = JSON.parse(localStorage.getItem('CXR-headers'));
 
                $.each(object, function (short, long) {
-                  headerList.push("<option>" + long + "</option>");
+                  headerList.push("<option>" + short + "</option>");
                });
                
                // CREATE NEEDED SELECT OPTIONS
@@ -62,6 +62,7 @@ $('a').on('click', function() {
 
             // PUSH IN NEW TABLE
             $('#sorting').html(data);
+            convertMoney();
 
             // REMOVE OLD UNDERLINES AND ADD IT TO TARGET
             $('#username, #zip, #income, #seeks').css('text-decoration', 'none');
@@ -89,4 +90,23 @@ jQuery(document).on('keyup',function(evt) {
 // UNDERLINE USERNAME LINK ON PEOPLE PAGE
 $(document).ready(function() {
    $('#username').css('text-decoration', 'underline');
+   convertMoney();
 });
+
+// CONVERT ALL MONEY TO SELECTED CURRENCY
+function convertMoney() {
+   $('#people-tbl #money, #person-tbl #money').each(function(){
+      var old_money = parseInt($(this).text());
+      var myCurrency = $('#myCurrency').val();
+
+      var rate = JSON.parse(localStorage.getItem('CXR-rates')).rates[myCurrency];
+      var new_money = rate * old_money;
+      
+      console.log('old:' + old_money);
+      console.log('rate:' + rate);
+      console.log('new:' + new_money);
+      console.log('');
+
+      $(this).text(new_money.toFixed(0));
+   });
+}

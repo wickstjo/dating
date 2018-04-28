@@ -19,14 +19,15 @@
          if (!misc::userExists(strtolower(post::val('username')))) {
 
             db::instance()->action(
-               'INSERT INTO people (username, name, password, email, zip, income, seeks, descr) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
+               'INSERT INTO people (username, name, password, email, zip, income, currency, seeks, descr) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)',
                array(
                   strtolower(post::val('username')),
                   strtolower(post::val('name')),
                   hash('sha256', post::val('password')),
                   strtolower(post::val('email')),
                   post::val('zip'),
-                  post::val('income'),
+                  post::val('converted'),
+                  post::val('currency'),
                   strtolower(post::val('seeks')),
                   post::val('descr')
                )
@@ -64,12 +65,15 @@
          session::set('zip', $zip);
       }
 
-      // CHANGE INCOME
-      if (!empty(post::val('income'))) {
-         $income = post::val('income');
+      // CHANGE INCOME AND CURRENCY
+      if (!empty(post::val('converted')) && !empty(post::val('currency'))) {
+         $income = post::val('converted');
+         $currency = post::val('currency');
  
-         db::instance()->action('UPDATE people SET income = ? WHERE username = ?', array($income, session::username()));
+         db::instance()->action('UPDATE people SET income = ?, currency = ? WHERE username = ?', array($income, $currency, session::username()));
+         
          session::set('income', $income);
+         session::set('currency', $currency);
       }
 
       // CHANGE SEEKS

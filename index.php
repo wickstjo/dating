@@ -10,8 +10,8 @@
 
    // IF USER IS LOGGED IN
    if (session::logged()) {
+      
       misc::success('Greetings ' . ucfirst(session::username()) . '!');
-
       $requests = new requests(session::username());
 
       // SHOW REQUESTS IF COUNT != 0

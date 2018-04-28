@@ -32,6 +32,10 @@
          return $_SESSION['auth']->fetch('income');
       }
 
+      public function currency() {
+         return $_SESSION['auth']->fetch('currency');
+      }
+
       public function seeks() {
          return $_SESSION['auth']->fetch('seeks');
       }

@@ -71,6 +71,14 @@
 </head>
 <body>
 
+<?php
+   if (session::logged()) {
+      echo '<input type="hidden" id="myCurrency" value="' . session::currency() . '">';
+   } else {
+      echo '<input type="hidden" id="myCurrency" value="USD">';
+   }
+?>
+
 <table id="tools">
 	<tr>
 		<td>

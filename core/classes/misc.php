@@ -83,11 +83,6 @@
          echo '<div id="error">' . $text . '</div>';
       }
 
-      // FORMAT INCOME NUMBER PROPERLY
-      public function income($number) {
-         return number_format($number, 0, '', ' ');
-      }
-
       // GENERATE UNIQUE DATE ID
       public function generateCode() {
          $code = rand(100000, 999999);

@@ -1,4 +1,4 @@
-$("#toolbox input").on('keydown keyup change', function() {
+$("#toolbox input, #toolbox select").on('keydown keyup change', function() {
 
    // CHECK FOR ELEMENT CLASS TO BE ABLE TO REUSE VARIABLE NAMES
    var source = $(event.target).attr("class");
@@ -64,7 +64,10 @@ $("#toolbox input").on('keydown keyup change', function() {
       var name = $("[name=name]").val();
       var email = $("[name=email]").val();
       var zip = $("[name=zip]").val();
+
       var income = $("[name=income]").val();
+      var currency = $("[name=currency]").val();
+
       var seeks = $("[name=seeks]").val();
       var descr = $("[name=descr]").val();
 
@@ -108,6 +111,31 @@ $("#toolbox input").on('keydown keyup change', function() {
       // CHECK INCOME LENGTH
       if (income.length > 100) {
          errors.push('Income cannot exceed 100 characters!');
+      }
+
+      // CHECK THAT A CURRENCY HAS BEEN SELECTED
+      if (currency == 'Your Local Currency') {
+         errors.push('Select a Proper Currency!');
+      }
+
+      // CALCULATE INCOME IN DOLLARS
+      if (income.length != 0 && currency != 'Your Local Currency') {
+         var rate = JSON.parse(localStorage.getItem('CXR-rates')).rates[currency];
+         var money = income / rate;
+
+         $("[name=converted]").val(money);
+
+      // EMPTY HIDDEN INPUT IF EITHER FAIL
+      } else {
+         $("[name=converted]").val('');
+      }
+
+      // SEEKS WHITELIST
+      var whitelist = ['male', 'female', 'both'];
+
+      // TRIGGER IF NOT WITHIN WHITELIST
+      if (jQuery.inArray(seeks.toLowerCase(), whitelist) == -1 && seeks.length != 0) {
+         errors.push('Accepted values: Male, Female or Both!');
       }
 
       // CHECK DESCRIPTION LENGTH
@@ -167,6 +195,8 @@ $("#toolbox input").on('keydown keyup change', function() {
       var income = $("[name=income]").val();
       var incomePH = $("[name=income]").attr('placeholder');
 
+      var currency = $("[name=currency]").val();
+
       var seeks = $("[name=seeks]").val();
       var seeksPH = $("[name=seeks]").attr('placeholder');
 
@@ -210,6 +240,22 @@ $("#toolbox input").on('keydown keyup change', function() {
          errors.push('That is already your yearly income!');
       }
 
+      // MAKE SURE BOTH INCOME AND CURRENCY FIELDS ARE FILLED
+      if ((income.length != 0 && currency != 'Your Local Currency') && ($("[name=converted]").length != 0)) {
+         
+         var rate = JSON.parse(localStorage.getItem('CXR-rates')).rates[currency];
+         var money = income / rate;
+         $("[name=converted]").val(money);
+
+      } else {
+
+         if ((income.length == 0 && currency != 'Your Local Currency') || (income.length != 0 && currency == 'Your Local Currency')) {
+            errors.push('Both your income and currency have to be specified.');
+         }
+         
+         $("[name=converted]").val('');
+      }
+
       // CHECK INCOME LENGTH
       if (income.length > 100) {
          errors.push('Income cannot exceed 100 characters!');
@@ -218,6 +264,14 @@ $("#toolbox input").on('keydown keyup change', function() {
       // CHECK SEEKS WITH PH
       if (seeks.toLowerCase() == seeksPH.toLowerCase()) {
          errors.push('You are already seeking those!');
+      }
+
+      // SEEKS WHITELIST
+      var whitelist = ['male', 'female', 'both'];
+
+      // TRIGGER IF NOT WITHIN WHITELIST
+      if (jQuery.inArray(seeks.toLowerCase(), whitelist) == -1 && seeks.length != 0) {
+         errors.push('Acceptable values: Male, Female or Both!');
       }
 
       // CHECK DESCRIPTION WITH PH

@@ -5,6 +5,7 @@
       private $email;
       private $zip;
       private $income;
+      private $currency;
       private $descr;
       private $seeks;
 
@@ -17,6 +18,7 @@
             $this->email = $r['email'];
             $this->zip = $r['zip'];
             $this->income = $r['income'];
+            $this->currency = $r['currency'];
             $this->descr = $r['descr'];
             $this->seeks = $r['seeks'];
          }
@@ -24,6 +26,11 @@
 
       // PRINT TABLE WITH VALUES
       public function show() {
+         $curr = 'USD';
+         if (session::logged()) {
+            $curr = session::currency();
+         }
+
          echo '
             <table id="person-tbl">
                <tr>
@@ -43,8 +50,8 @@
                   <td>' . $this->zip . '</td>
                </tr>
                <tr>
-                  <td>Income:</td>
-                  <td>' . misc::income($this->income) . '</td>
+                  <td>Income (' . $curr . '):</td>
+                  <td><div id="money">' . $this->income . '</div></td>
                </tr>
                <tr>
                   <td>Seeks:</td>

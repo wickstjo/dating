@@ -27,8 +27,8 @@
                <input type="text" placeholder="Email" autocomplete="off" class="register" name="email">
                <input type="text" placeholder="Zip Code" class="register" name="zip">
                <input type="number" placeholder="Yearly Income" autocomplete="off" class="register" name="income">
-               <select id="currency"></select>
-               <input type="hidden" class="settings" name="converted">
+               <select id="currency" class="register" name="currency"></select>
+               <input type="hidden" class="register" name="converted">
                <input type="text" placeholder="What are you seeking?" autocomplete="off" class="register" name="seeks">
                <input type="text" placeholder="Describe yourself" autocomplete="off" class="register" name="descr">
                <hr>
@@ -46,6 +46,8 @@
                <input type="text" placeholder="' . session::email() . '" autocomplete="off" class="settings" name="email">
                <input type="text" placeholder="' . session::zip() . '" autocomplete="off" class="settings" name="zip">
                <input type="number" placeholder="' . session::income() . '" autocomplete="off" class="settings" name="income">
+               <select id="currency" class="settings" name="currency"></select>
+               <input type="hidden" class="settings" name="converted">
                <input type="text" placeholder="' . session::seeks() . '" autocomplete="off" class="settings" name="seeks">
                <input type="text" placeholder="' . session::descr() . '" autocomplete="off" class="settings" name="descr">
                <hr>
