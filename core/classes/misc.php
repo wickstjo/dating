@@ -19,7 +19,8 @@
             break;
 
             case 'profile':
-               return header("location: {$host}/people/{session::username()}");
+                $user = session::username();
+                return header("location: {$host}/people/{$user}");
             break;
 
             case 'self':
