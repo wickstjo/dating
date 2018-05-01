@@ -92,6 +92,13 @@
          session::set('descr', $descr);
       }
 
+      // CHANGE PASSWORD
+      if ((!empty(post::val('password')) && !empty(post::val('password_again'))) && (post::val('password') == post::val('password_again'))) {
+         $password = post::val('password');
+
+         db::instance()->action('UPDATE people SET password = ? WHERE username = ?', array(hash('sha256', $password), session::username()));
+      }
+
       misc::redirect('self');
    
    // DATE REQUEST

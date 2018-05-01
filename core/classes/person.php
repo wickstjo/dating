@@ -41,11 +41,19 @@
                   <td>Name:</td>
                   <td>' . ucwords($this->name) . '</td>
                </tr>
-               <tr>
-                  <td>Email:</td>
-                  <td>' . ucfirst($this->email) . '</td>
-               </tr>
-               <tr>
+         ';
+
+         if (session::logged()) {
+            echo '
+                  <tr>
+                     <td>Email:</td>
+                     <td>' . ucfirst($this->email) . '</td>
+                  </tr>
+                  <tr>
+            ';
+         }
+
+         echo '
                   <td>Zip:</td>
                   <td>' . $this->zip . '</td>
                </tr>

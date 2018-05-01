@@ -51,6 +51,9 @@
                <input type="text" placeholder="' . session::seeks() . '" autocomplete="off" class="settings" name="seeks">
                <input type="text" placeholder="' . session::descr() . '" autocomplete="off" class="settings" name="descr">
                <hr>
+               <input type="password" placeholder="New Password" class="settings" name="password">
+               <input type="password" placeholder="New Password Again" class="settings" name="password_again">
+               <hr>
 					<input type="submit" value="Change Settings" name="settings" disabled>
 				</form>
 			';

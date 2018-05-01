@@ -203,6 +203,9 @@ $("#toolbox input, #toolbox select").on('keydown keyup change', function() {
       var descr = $("[name=descr]").val();
       var descrPH = $("[name=descr]").attr('placeholder');
 
+      var password = $("[name=password]").val();
+      var password_again = $("[name=password_again]").val();
+
       // CHECK NAME WITH PH
       if (name.toLowerCase() == namePH.toLowerCase()) {
          errors.push('That is already your name!');
@@ -284,8 +287,18 @@ $("#toolbox input, #toolbox select").on('keydown keyup change', function() {
          errors.push('Description must be between 10 and 500 characters.');
       }
 
+      // CHECK IF PASSWORDS MATCH
+      if (password != password_again) {
+         errors.push('Passwords do not match!');
+      }
+
+      // CHECK PASSWORD LENGTH
+      if (password.length > 1000) {
+         errors.push('Password cannot exceed 1000 characters!');
+      }
+
       // ON SUCCESS
-      if ((errors.length == 0) && (name.length != 0 || email.length != 0 || zip.length != 0 || income.length != 0 || seeks.length != 0 || descr.length != 0)) {
+      if ((errors.length == 0) && (name.length != 0 || email.length != 0 || zip.length != 0 || income.length != 0 || seeks.length != 0 || descr.length != 0) || (password.length != 0 && password_again.length != 0 && password == password_again)) {
          $("[type=submit]").prop('disabled', false);
          $('#validate, #vspace').css('display', 'none');
 
