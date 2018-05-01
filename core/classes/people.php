@@ -10,7 +10,7 @@
             $this->order = 'DESC';
          }
 
-         $this->object = db::instance()->get("SELECT * FROM people ORDER BY {$col} {$this->order}");
+         $this->object = db::instance()->get("SELECT * FROM people ORDER BY {$col} {$this->order} LIMIT 4");
       }
 
       public function show() {
