@@ -1,6 +1,6 @@
 var coords;
 var map;
-var service;
+var hsl;
 
 function geocode(query) {
 
@@ -9,19 +9,34 @@ function geocode(query) {
    axios.get('https://maps.googleapis.com/maps/api/geocode/json', {
 
       params:{
-         address: query,
+         address: query + ', Finland',
          key: 'AIzaSyCN4kOw1na9LgXGDPokVeZXOo9pfXGQ2eA'
       }
    
    }).then(function(response) {
       coords = response.data.results[0].geometry.location;
+
       initMap();
-      performSearch();
+
+      // HSL
+      axios.get('https://api.digitransit.fi/geocoding/v1/search?text=cafe&boundary.circle.lat=' + coords.lat + '&boundary.circle.lon=' + coords.lng + '&boundary.circle.radius=2', {
+      }).then(function(response) {
+         hsl = response.data.features;
+         var counter = 0;
+
+         $.each(hsl, function(){
+            addMarker(hsl[counter]);
+            counter++;
+         });
+
+      }).catch(function(error) {
+         console.log(error);
+      });
 
    }).catch(function(error) {
       console.log(error);
 
-   })
+   });
 }
 
 function initMap() {
@@ -29,41 +44,26 @@ function initMap() {
       zoom: 13,
       center: coords
    });
-
-   var marker = new google.maps.Marker({
-      position: coords,
-      map: map
+   
+   var circle = new google.maps.Circle({
+	   map: map,
+		center: coords,
+		strokeColor: '#FF0000',
+		strokeOpacity: 0.8,
+		strokeWeight: 2,
+		fillColor: '#FF0000',
+		fillOpacity: 0.35,
+		radius: 2000
    });
-
-   service = new google.maps.places.PlacesService(map);
-   map.addListener('idle', performSearch);
-}
-
-function performSearch() {
-   var request = {
-      location: coords,
-      radius: 1000,
-      types: ['cafe']
-   };
-
-   service.radarSearch(request, callback);
-}
-
-function callback(results, status) {
-   if (status !== google.maps.places.PlacesServiceStatus.OK) {
-      console.error(status);
-      return;
-   }
-
-   for (var i = 0, result; result = results[i]; i++) {
-      addMarker(result);
-   }
 }
 
  function addMarker(place) {
+   var asdf = { lat: place.geometry.coordinates[1], lng: place.geometry.coordinates[0] };
+
    var marker = new google.maps.Marker({
       map: map,
-      position: place.geometry.location,
+      position: asdf,
+      label: place.properties.name,
       icon: {
          url: 'https://developers.google.com/maps/documentation/javascript/images/circle.png',
          anchor: new google.maps.Point(10, 10),
