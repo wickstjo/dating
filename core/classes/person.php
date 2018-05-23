@@ -10,7 +10,7 @@
       private $seeks;
 
       public function __construct($person) {
-         $result = db::instance()->get('SELECT * FROM people WHERE username = ?', array(strtolower($person)));
+         $result = db::instance()->get('SELECT username, name, email, zip, income, currency, descr, seeks FROM people WHERE username = ?', array(strtolower($person)));
 
          foreach ($result as $res => $r) {
             $this->username = $r['username'];
@@ -84,7 +84,7 @@
       public function button() {
          
          // CHECK IF THERE IS A REQUEST PENDING FROM LOGGED USER
-         if (session::logged() && session::username() != $_GET['username']) {
+         if (session::logged() && session::username() != get::val('username')) {
             $pending = db::instance()->count('SELECT * FROM requests WHERE fromUser = ? AND toUser = ?', array(session::username(), $this->username));
          }
 

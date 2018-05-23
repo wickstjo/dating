@@ -9,7 +9,7 @@
       $people->sortMenu();
       $people->show();
 
-   // SINGLE PEOPLE
+   // SPECIFIC PERSON
    } else {
 
       // IF USER EXISTS

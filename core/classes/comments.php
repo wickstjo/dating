@@ -4,7 +4,7 @@
       private $count;
 
       public function __construct($code) {
-         $this->object = db::instance()->get("SELECT * FROM comments WHERE ref = ?", array($code));
+         $this->object = db::instance()->get("SELECT id, author, comment, date FROM comments WHERE ref = ?", array($code));
          $this->count = db::instance()->count("SELECT * FROM comments WHERE ref = ?", array($code));
       }
 

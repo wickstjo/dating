@@ -6,7 +6,7 @@
 
       public function __construct($username) {
          $this->username = strtolower($username);
-         $this->object = db::instance()->get("SELECT * FROM dates WHERE person1 = ? OR person2 = ? ORDER BY date DESC", array($this->username, $this->username));
+         $this->object = db::instance()->get("SELECT code, person1, person2, date FROM dates WHERE person1 = ? OR person2 = ? ORDER BY date DESC", array($this->username, $this->username));
          $this->count = db::instance()->count("SELECT * FROM dates WHERE person1 = ? OR person2 = ?", array($this->username, $this->username));
       }
 

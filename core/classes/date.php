@@ -7,14 +7,14 @@
       private $postal;
 
       public function __construct($code) {
-         $result = db::instance()->get("SELECT * FROM dates WHERE code = ?", array($code));
+         $result = db::instance()->get("SELECT person1, person2, date FROM dates WHERE code = ?", array($code));
          $this->code = $code;
 
          foreach ($result as $res => $r) {
             $this->person1 = $r['person1'];
             $this->person2 = $r['person2'];
             $this->date = $r['date'];
-            $this->postal = db::instance()->string('SELECT * FROM people WHERE username = ?', 'zip', array($this->person1));
+            $this->postal = db::instance()->string('SELECT zip FROM people WHERE username = ?', 'zip', array($this->person1));
          }
       }
 

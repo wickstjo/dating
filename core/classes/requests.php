@@ -5,7 +5,7 @@
 
       public function __construct($username) {
          $username = strtolower($username);
-         $this->object = db::instance()->get('SELECT * FROM requests WHERE toUser = ? ORDER BY date', array($username));
+         $this->object = db::instance()->get('SELECT fromUser, msg FROM requests WHERE toUser = ? ORDER BY date', array($username));
          $this->count = db::instance()->count('SELECT * FROM requests WHERE toUser = ?', array($username));
       }
 
